@@ -1,0 +1,233 @@
+<html>
+  <head>
+    <title>LP3I HOTSPOT - LOGOUT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta
+      name="viewport"
+      content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"
+    />
+    <style type="text/css">
+      textarea,
+      input,
+      select {
+        background-color: #fdfbfb;
+        border: 1px #bbbbbb solid;
+        padding: 2px;
+        margin: 1px;
+        font-size: 14px;
+        color: #808080;
+      }
+
+      .tabula {
+        border-width: 1px;
+        border-collapse: collapse;
+        border-color: #c1c1c1;
+        background-color: transparent;
+        font-family: verdana;
+        font-size: 11px;
+      }
+
+      body {
+        color: #737373;
+        font-size: 12px;
+        font-family: verdana;
+      }
+
+      a,
+      a:link,
+      a:visited,
+      a:active {
+        color: #aaaaaa;
+        text-decoration: none;
+        font-size: 12px;
+      }
+      a:hover {
+        border-bottom: 1px dotted #c1c1c1;
+        color: #aaaaaa;
+      }
+      img {
+        border: none;
+      }
+      td {
+        font-size: 12px;
+        padding: 4px;
+      }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script language="JavaScript">
+      function openLogin() {
+        if (window.name != "hotspot_logout") return true;
+        open("$(link-login)", "_blank", "");
+        window.close();
+        return false;
+      }
+    </script>
+
+    <div
+      class="relative p-10 gap-28 flex sm:flex-row flex-col items-center justify-between min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:py-4 sm:pt-0"
+    >
+      <div class="sm:pl-52 pl-4">
+        <dotlottie-player
+          src="./json/Login.json"
+          background="transparent"
+          speed="1"
+          class="sm:w-[800px] sm:h-[800px] w-[400px] h-[400px]"
+          loop
+          autoplay
+        ></dotlottie-player>
+      </div>
+      <div class="sm:pr-52 pr-4">
+        <p class="text-xl mb-3">
+          Anda sudah berhasil
+          <span class="font-bold text-red-500">log out</span> dari Hotspot
+          Mahasiswa<br />
+          <span class="font-bold text-sky-500"
+            >Politeknik LP3I Kampus Tasikmalaya</span
+          >
+        </p>
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table
+            class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+          >
+            <tbody>
+              <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  <div class="flex items-center text-[15px]">
+                    <div class="p-2"><i class="fa-solid fa-user"></i></div>
+                    <div class="p-2">Username</div>
+                  </div>
+                </th>
+                <th class="px-6 py-4">$(username)</th>
+              </tr>
+              <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  <div class="flex items-center text-[15px]">
+                    <div class="p-2">
+                      <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <div class="p-2">IP address</div>
+                  </div>
+                </th>
+                <th class="px-6 py-4">$(ip)</th>
+              </tr>
+              <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  <div class="flex items-center text-[15px]">
+                    <div class="p-2">
+                      <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <div class="p-2">MAC address</div>
+                  </div>
+                </th>
+                <th class="px-6 py-4">$(mac)</th>
+              </tr>
+              <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  <div class="flex items-center text-[15px]">
+                    <div class="p-2">
+                      <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="p-2">session time</div>
+                  </div>
+                </th>
+                <th class="px-6 py-4">$(uptime)</th>
+              </tr>
+              $(if session-time-left)
+              <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  <div class="flex items-center text-[15px]">
+                    <div class="p-2">
+                      <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="p-2">time left</div>
+                  </div>
+                </th>
+                <th class="px-6 py-4">$(session-time-left)</th>
+              </tr>
+              $(endif)
+              <tr
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  <div class="flex items-center text-[15px]">
+                    <div class="p-2">
+                      <i class="fa-solid fa-up-down"></i>
+                    </div>
+                    <div class="p-2">bytes up/down</div>
+                  </div>
+                </th>
+                <th class="px-6 py-4">$(bytes-in-nice) / $(bytes-out-nice)</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+          <input type="submit" class="my-4 p-2 w-40 text-[15px] rounded-full bg-sky-400 border border-white hover:bg-sky-500 text-white" value="log in" />
+        </form>
+
+      </div>
+    </div>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.js"></script>
+  </body>
+</html>

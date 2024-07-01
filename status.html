@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+    <title>LP3I HOTSPOT - STATUS</title>
+
+    <!-- Conditional refresh timeout -->
+    $(if refresh-timeout)
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+
+    <style type="text/css">
+        textarea, input, select {
+            background-color: #FDFBFB;
+            border: 1px #BBBBBB solid;
+            padding: 2px;
+            margin: 1px;
+            font-size: 14px;
+            color: #808080;
+        }
+
+        .tabula {
+            border-width: 1px;
+            border-collapse: collapse;
+            border-color: #c1c1c1;
+            background-color: transparent;
+            font-family: Verdana, sans-serif;
+            font-size: 11px;
+        }
+
+        body {
+            color: #737373;
+            font-size: 12px;
+            font-family: Verdana, sans-serif;
+        }
+
+        a, a:link, a:visited, a:active {
+            color: #AAAAAA;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        a:hover {
+            border-bottom: 1px dotted #c1c1c1;
+            color: #AAAAAA;
+        }
+
+        img {
+            border: none;
+        }
+
+        td {
+            font-size: 12px;
+            padding: 4px;
+        }
+    </style>
+
+    <script language="JavaScript">
+        <!-- 
+        $(if advert-pending == 'yes')
+        var popup = '';
+
+        function focusAdvert() {
+            if (window.focus) popup.focus();
+        }
+
+        function openAdvert() {
+            popup = open('$(link-advert)', 'hotspot_advert', '');
+            setTimeout("focusAdvert()", 1000);
+        }
+        $(endif)
+
+        function openLogout() {
+            if (window.name != 'hotspot_status') return true;
+            open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+            window.close();
+            return false;
+        }
+		Conditional advertisement script -->
+    </script>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.css"
+	rel="stylesheet"
+	/>
+	<script
+	src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+	type="module"></script>
+</head>
+<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0"
+      $(if advert-pending == 'yes') onLoad="openAdvert()" $(endif)>
+
+	<div
+      class="relative p-10 gap-28 flex sm:flex-row flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:py-4 sm:pt-0"
+    >
+		<form action="$(link-logout)" name="logout" onSubmit="return openLogout()"></form>
+			<div class="items-center justify-center">
+				<div><dotlottie-player
+					src="./json/status.json"
+					background="transparent"
+					speed="1"
+					class="sm:w-200 sm:h-200 w-[400px] h-[400px]"
+					loop
+					autoplay
+				  ></dotlottie-player></div>
+				$(if login-by == 'trial')
+				<div class="text-[18px] font-bold text-center">Welcome trial user!</div>
+				$(elif login-by != 'mac')
+				<div class="text-[18px] font-bold text-center">Welcome $(username)!</div>
+				$(endif)
+			</div>
+			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+				<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+					<tbody>
+						<tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								<div class="flex items-center text-[15px]">
+									<div class="p-2"><i class="fa-solid fa-user"></i></div>
+									<div class="p-2">IP address</div>
+								</div>
+							</th>
+							<td class="px-6 py-4">
+								$(ip)
+							</td>
+						</tr>
+						<tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								<div class="flex items-center text-[15px]">
+									<div class="p-2">
+									<i class="fa-solid fa-up-down"></i>
+									</div>
+									<div class="p-2">bytes up/down</div>
+								</div>
+							</th>
+							<td class="px-6 py-4">
+								$(bytes-in-nice) / $(bytes-out-nice)
+							</td>
+						</tr>
+						$(if session-time-left)
+						<tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								<div class="flex items-center text-[15px]">
+									<div class="p-2"><i class="fa-solid fa-wifi"></i></div>
+									<div class="p-2">connected / left</div>
+								</div>
+							</th>
+							<td class="px-6 py-4">
+								$(uptime) / $(session-time-left)
+							</td>
+						</tr>
+						$(else)
+						<tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								<div class="flex items-center text-[15px]">
+									<div class="p-2"><i class="fa-solid fa-wifi"></i></div>
+									<div class="p-2">connected</div>
+								</div>
+							</th>
+							<td class="px-6 py-4">
+								$(uptime)
+							</td>
+						</tr>
+						$(endif)
+						$(if blocked == 'yes')
+						<tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								<div class="flex items-center text-[15px]">
+									<div class="p-2"><i class="fa-solid fa-wifi"></i></div>
+									<div class="p-2">status</div>
+								</div>
+							</th>
+							<td class="px-6 py-4">
+								<a href="$(link-advert)" target="hotspot_advert">advertisement</a> <span class="text-red-500 font-bold">required</span>
+							</td>
+						</tr>
+						$(elif refresh-timeout)
+						<tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+							<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+								<div class="flex items-center text-[15px]">
+									<div class="p-2"><i class="fa-solid fa-arrows-rotate"></i></div>
+									<div class="p-2">status refresh</div>
+								</div>
+							</th>
+							<td class="px-6 py-4">
+								$(refresh-timeout)
+							</td>
+						</tr>
+						$(endif)
+					</tbody>
+				</table>
+				<!-- Log off button -->
+				$(if login-by-mac != 'yes')
+				<br>
+				<!-- User manager link -->
+				<button class="my-4 ml-4" onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
+				<!-- End of user manager link -->
+				<input type="submit" class="my-4 p-2 w-40 text-[15px] rounded-full bg-sky-400 border border-white hover:bg-sky-500 text-white" value="log off">
+				$(endif)
+			</div>
+		</form>
+	</div>
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"
+	/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.js"></script>
+</body>
+</html>
