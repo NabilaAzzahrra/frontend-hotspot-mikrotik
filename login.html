@@ -9,71 +9,80 @@
       name="viewport"
       content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"
     />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.css"
-      rel="stylesheet"
-    />
-    <script
-      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-      type="module"
-    ></script>
     <style type="text/css">
       body {
         color: #737373;
         font-size: 10px;
-        font-family: verdana;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f3f3f3;
+        margin: 0;
+        padding: 0;
       }
-
-      textarea,
-      input,
-      select,
-      button {
-        background-color: #fdfbfb;
-        border: 1px solid #bbbbbb;
-        padding: 2px;
-        margin: 1px;
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 10px;
+      }
+      .card {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header img {
+        max-width: 100px;
+        height: auto;
+      }
+      .description {
         font-size: 14px;
-        color: #808080;
+        text-align: justify;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group input[type="text"], 
+      .form-group input[type="number"], 
+      .form-group input[type="submit"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      .form-group input[type="submit"] {
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
         cursor: pointer;
       }
-
-      a,
-      a:link,
-      a:visited,
-      a:active {
-        color: #aaaaaa;
-        text-decoration: none;
-        font-size: 10px;
+      .form-group input[type="submit"]:hover {
+        background-color: #0056b3;
       }
-      a:hover {
-        border-bottom: 1px dotted #c1c1c1;
-        color: #aaaaaa;
-      }
-      img {
-        border: none;
-      }
-      td {
-        font-size: 14px;
-        color: #7a7a7a;
+      .error-message {
+        color: #ff8080;
+        font-size: 12px;
+        margin-top: 10px;
       }
     </style>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Poppins", sans-serif;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   </head>
 
-  <body class="">
+  <body>
     $(if chap-id)
     <form name="sendin" action="$(link-login-only)" method="post">
-      <input type="hidden" name="username" placeholder="NIM" />
+      <input type="hidden" name="username" />
       <input type="hidden" name="password" />
       <input type="hidden" name="dst" value="$(link-orig)" />
       <input type="hidden" name="popup" value="true" />
@@ -81,133 +90,51 @@
 
     <script type="text/javascript" src="/md5.js"></script>
     <script type="text/javascript">
-      <!--
       function doLogin() {
         document.sendin.username.value = document.login.username.value;
-        document.sendin.password.value = hexMD5(
-          "$(chap-id)" + document.login.password.value + "$(chap-challenge)"
-        );
+        document.sendin.password.value = hexMD5("$(chap-id)" + document.login.password.value + "$(chap-challenge)");
         document.sendin.submit();
         return false;
       }
-      //-->
     </script>
     $(endif)
 
-    <div
-      class="relative p-10 gap-28 flex sm:flex-row flex-col items-top justify-between min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:py-4 sm:pt-0"
-    >
-    
-    <div class="notice" style="color: #c1c1c1; font-size: 9px">
-      Please log on to use the internet hotspot service<br />$(if trial ==
-      'yes')Free trial available,
-      <a
-        style="color: #ff8080"
-        href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"
-        >click here</a
-      >.$(endif)
-    </div>
-    <br />
-
-      <div class="sm:ml-52 ml-4 p-4 w-full">
-        <form
-          autocomplete="off"
-          name="login"
-          action="$(link-login-only)"
-          method="post"
-          $(if
-          chap-id)
-          onSubmit="return doLogin()"
-          $(endif)
-        >
+    <div class="container">
+      <div class="card">
+        <div class="header">
+          <img src="img/logolp.png" alt="Logo LP3I" />
+          <img src="img/gmu.png" alt="Logo GMU" />
+        </div>
+        <div class="description">
+          Hotspot Mahasiswa Politeknik LP3I Kampus Tasikmalaya ditujukan untuk menyediakan akses internet cepat dan stabil, mendukung kegiatan belajar mengajar, penelitian, dan pengembangan diri mahasiswa.
+        </div>
+        <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
           <input type="hidden" name="dst" value="$(link-orig)" />
           <input type="hidden" name="popup" value="true" />
-          <div class="flex items-center justify-beetwen gap-10 pb-8">
-            <div>
-              <img
-                src="img/logolp.png"
-                alt=""
-                srcset=""
-                class="w-[200px] h-auto"
-              />
-            </div>
-            <div>
-              <img
-                src="img/gmu.png"
-                alt=""
-                srcset=""
-                class="w-[150px] h-auto"
-              />
-            </div>
+          <div class="form-group">
+            <input type="number" name="username" placeholder="Masukan NIM disini ..." required />
           </div>
-          <p class="text-xl text-justify pb-8">
-            Hotspot Mahasiswa Politeknik LP3I Kampus Tasikmalaya ditujukan untuk
-            menyediakan akses internet cepat dan stabil, mendukung kegiatan
-            belajar mengajar, penelitian, dan pengembangan diri mahasiswa.
-          </p>
-          <div class="mb-5">
-            <div class="flex gap-8">
-              <input
-                type="number"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[300px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Masukan NIM disini ..."
-                required
-              />
-              <input
-                type="submit"
-                class="w-[100px] text-[15px] border border-2 border-sky-400 rounded-full font-bold bg-sky-400 text-white hover:bg-sky-500"
-                value="Login"
-              />
-            </div>
+          <div class="form-group">
+            <input type="submit" value="Login" />
           </div>
         </form>
-        $(if error)<br />
-        <div style="color: #ff8080; font-size: 9px">$(error)</div>
+        $(if error)
+        <div class="error-message">$(error)</div>
         $(endif)
       </div>
-      <div class="sm:pr-52 pr-4">
-        <dotlottie-player
-          src="./json/Login.json"
-          background="transparent"
-          speed="1"
-          class="sm:w-200 sm:h-200 w-500 h-500"
-          loop
-          autoplay
-        ></dotlottie-player>
-      </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.js"></script>
+
     <script type="text/javascript">
-      <!--
       document.login.username.focus();
 
-      // login page 2 mode by Laksamadi Guko
       var username = document.login.username;
       var password = document.login.password;
-      var luser = document.getElementById("luser");
-      var lpass = document.getElementById("lpass");
-      var btnmem = document.getElementById("btnmem");
-      var btnvcr = document.getElementById("btnvcr");
 
-      // set password = username
       function setpass() {
         var user = username.value;
         password.value = user;
       }
       username.onchange = setpass;
-      btnmem.style = "background-color:#FDFBFB; width: 90px; cursor:pointer;";
-      btnvcr.style = "background-color:#f1f1f1; width: 90px; cursor:pointer;";
-
-      // change to voucher mode
-      function voucher() {
-        username.focus();
-        username.onchange = setpass;
-        password.type = "hidden";
-        luser.innerHTML = "Voucher";
-        lpass.innerHTML = "";
-        btnmem.style = "background-color:#FDFBFB; width: 90px; cursor:pointer;";
-        btnvcr.style = "background-color:#f1f1f1; width: 90px; cursor:pointer;";
-      }
     </script>
   </body>
 </html>
