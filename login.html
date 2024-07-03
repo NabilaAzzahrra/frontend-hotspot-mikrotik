@@ -81,7 +81,7 @@
 
     <script type="text/javascript" src="/md5.js"></script>
     <script type="text/javascript">
-      // <!--
+      <!--
       function doLogin() {
         document.sendin.username.value = document.login.username.value;
         document.sendin.password.value = hexMD5(
@@ -97,6 +97,18 @@
     <div
       class="relative p-10 gap-28 flex sm:flex-row flex-col items-top justify-between min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:py-4 sm:pt-0"
     >
+    
+    <div class="notice" style="color: #c1c1c1; font-size: 9px">
+      Please log on to use the internet hotspot service<br />$(if trial ==
+      'yes')Free trial available,
+      <a
+        style="color: #ff8080"
+        href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"
+        >click here</a
+      >.$(endif)
+    </div>
+    <br />
+
       <div class="sm:ml-52 ml-4 p-4 w-full">
         <form
           autocomplete="off"
@@ -149,6 +161,9 @@
             </div>
           </div>
         </form>
+        $(if error)<br />
+        <div style="color: #ff8080; font-size: 9px">$(error)</div>
+        $(endif)
       </div>
       <div class="sm:pr-52 pr-4">
         <dotlottie-player
@@ -163,6 +178,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.js"></script>
     <script type="text/javascript">
+      <!--
       document.login.username.focus();
 
       // login page 2 mode by Laksamadi Guko
