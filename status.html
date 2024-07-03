@@ -96,9 +96,9 @@
 	<div
       class="relative p-10 gap-28 flex sm:flex-row flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:py-4 sm:pt-0"
     >
-		<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
 			<div class="items-center justify-center">
-				<div class="flex items-center justify-beetwen gap-10">
+				<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+				<div class="flex items-center justify-beetwen gap-10 pb-2">
 					<div>
 					  <img
 						src="img/logolp.png"
@@ -218,8 +218,9 @@
 				<!-- End of user manager link -->
 				<input type="submit" class="my-4 p-2 w-40 text-[15px] rounded-full bg-red-400 border border-white hover:bg-red-500 text-white" value="log off">
 				$(endif)
+			</form>
 			</div>
-		</form>
+
 	</div>
 	<link
 		rel="stylesheet"
